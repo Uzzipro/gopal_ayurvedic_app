@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bggrey"
+    tools:context=".Fragments.ui.home.HomeFragment">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llToolbarHome"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/bggrey"
+        android:orientation="horizontal"
+        android:padding="@dimen/_10_dp"
+        android:weightSum="1"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvHomeFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:fontFamily="@font/sfproroundedbold"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="@string/title_home"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_24_sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbarHome" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:padding="@dimen/_5_dp"
+                android:src="@drawable/ic_cart" />
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="@dimen/_20_dp"
+                android:layout_height="@dimen/_20_dp"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/ic_redcircle">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:id="@+id/tvCartItemCount"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_13_sp" />
+            </androidx.appcompat.widget.LinearLayoutCompat>
+        </RelativeLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_20_dp"
+        android:layout_marginLeft="@dimen/_20_dp"
+        android:layout_marginTop="@dimen/_10_dp"
+        android:background="@drawable/etbg"
+        android:drawableLeft="@drawable/ic_search"
+        android:drawablePadding="@dimen/_20_dp"
+        android:fontFamily="@font/sfproroundedsemibold"
+        android:hint="@string/search"
+        android:maxLines="1"
+        android:padding="@dimen/_10_dp"
+        android:textColorHint="@color/grey"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/llToolbarHome" />
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llButtonholder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_30_dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintTop_toBottomOf="@id/etSearch">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llDrinks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDrinks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/sfproroundedmedium"
+                android:gravity="center"
+                android:text="@string/products"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_15_sp" />
+
+            <View
+                android:id="@+id/vDrinks"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginHorizontal="50dp"
+                android:animateLayoutChanges="true"
+                android:background="@drawable/tablayoutbottomstripbg" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llSnacks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvSnacks"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp"
+                android:fontFamily="@font/sfproroundedmedium"
+                android:gravity="center"
+                android:text="Snacks"
+                android:textColor="@color/grey"
+                android:textSize="@dimen/_15_sp" />
+
+            <View
+                android:id="@+id/vSnacks"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_marginHorizontal="50dp"
+                android:background="@drawable/tablayoutbottomstripbg"
+                android:visibility="gone" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <RelativeLayout
+        android:id="@+id/rlDrinkType"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_55_dp"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="@dimen/_10_dp"
+        android:background="@drawable/edittextbg"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        app:layout_constraintTop_toBottomOf="@id/llButtonholder">
+
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/spinnerDrinkType"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/_2_dp"
+            android:layout_weight="1"
+            android:background="@color/white"
+            android:hint="@string/select_drink_type"
+            android:textSize="@dimen/textsize_17sp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/_24_dp"
+            android:layout_height="@dimen/_24_dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_15_dp"
+            android:layout_marginEnd="@dimen/_15_dp"
+            android:layout_marginRight="@dimen/_15_dp"
+            android:layout_weight="0"
+            android:background="@drawable/ic_keyboard_arrow_down_black_24dp" />
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@color/bggrey"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/rlDrinkType">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProduct"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="300dp"
+            android:scrollbars="vertical"></androidx.recyclerview.widget.RecyclerView>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llProductNotFound"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/rlDrinkType">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animation_view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_150_dp"
+            android:layout_marginStart="@dimen/_8_dp"
+            android:layout_marginLeft="@dimen/_8_dp"
+            android:layout_marginEnd="@dimen/_8_dp"
+            android:layout_marginRight="@dimen/_8_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/sad_empty_box" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvLoading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_8_dp"
+            android:layout_marginTop="@dimen/_10_dp"
+            android:layout_marginEnd="@dimen/_8_dp"
+            android:fontFamily="@font/sfproroundedsemibold"
+            android:gravity="center"
+            android:text="@string/product_not_found"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/animation_view"
+            app:layout_constraintVertical_bias="0.034" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

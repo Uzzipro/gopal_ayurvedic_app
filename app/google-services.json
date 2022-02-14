@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "399451272141",
+    "project_id": "gopalayurvediccenter-54fd5",
+    "storage_bucket": "gopalayurvediccenter-54fd5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:399451272141:android:044c4b2c64fd9346af0a84",
+        "android_client_info": {
+          "package_name": "com.app.gopalayurvediccenter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "399451272141-a0pr6jdh2nfnak94dnsbhu1k7hp07p6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9pCDAirOk2WtBvWHdnXKf0KX2G7GxfQc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "399451272141-a0pr6jdh2nfnak94dnsbhu1k7hp07p6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
