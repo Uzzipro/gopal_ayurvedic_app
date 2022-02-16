@@ -64,9 +64,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         final CartDto cardData = cardinfoList.get(position);
 
-        if (cardData.getPd().getProductImg() != null) {
-            Picasso.get().load(cardData.getPd().getProductImg()).into(holder.ivProductImg);
-        }
         String price = "Rs. " + cardData.getPd().getProductPrice();
         holder.tvProductPrice.setText(price);
         holder.tvProductName.setText(cardData.getPd().getProductName());
@@ -265,7 +262,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvProductName, tvProductPrice, quantityCount;
-        private ImageView ivProductImg;
         private Button btMinus, btPlus;
 
         public MyViewHolder(View view) {
@@ -273,7 +269,6 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
             tvProductName = view.findViewById(R.id.tvProductName);
             tvProductPrice = view.findViewById(R.id.tvProductPrice);
 //            tvViewMoreDetails = view.findViewById(R.id.tvViewMoreDetails);
-            ivProductImg = view.findViewById(R.id.ivProductImg);
             btMinus = view.findViewById(R.id.minusQuantity);
             btPlus = view.findViewById(R.id.plusQuantity);
             quantityCount = view.findViewById(R.id.quantityCount);
