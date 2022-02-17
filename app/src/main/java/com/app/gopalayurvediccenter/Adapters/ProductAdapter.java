@@ -84,19 +84,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
                             quantityCountint = Integer.parseInt(cx.getProductQuantity());
                             cardData.setCartHasItem(true);
                         }
-
                     }
                     if (cardData.isCartHasItem()) {
-//                        Toast.makeText(context, "Items cannot go below 0 1 ", Toast.LENGTH_LONG).show();
-                        
                         holder.quantityCount.setText(String.valueOf(quantityCountint));
                     } else {
-//                        Toast.makeText(context, "Items cannot go below 0 2 ", Toast.LENGTH_LONG).show();
                         holder.quantityCount.setText("0");
-
                     }
                 } else {
-//                    Toast.makeText(context, "Items cannot go below 0 3 ", Toast.LENGTH_LONG).show();
                     holder.quantityCount.setText("0");
 
                 }

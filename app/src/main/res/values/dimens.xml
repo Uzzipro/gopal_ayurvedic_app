@@ -43,6 +43,7 @@
         <dimen name="_16_dp">16dp</dimen>
         <dimen name="_13_dp">13dp</dimen>
         <dimen name="_12_dp">12dp</dimen>
+        <dimen name="_32_dp">32dp</dimen>
     <dimen name="_8_dp">8dp</dimen>
     <dimen name="_40_dp">40dp</dimen>
     <dimen name="_60_dp">60dp</dimen>

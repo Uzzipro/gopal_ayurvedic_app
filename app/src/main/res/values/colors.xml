@@ -17,6 +17,9 @@
     <color name="darkGreen">#009120</color>
     <color name="red">#FF0000</color>
     <color name="lightGrey">#CCCCCC</color>
+    <color name="lightBlue">#E1F4FF</color>
+    <color name="strokeLightBlue">#82D2FF</color>
+    <color name="dark_link_blue">#3000BA</color>
 
 
 

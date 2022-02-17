@@ -32,8 +32,6 @@ public class Constants {
 
 
     /*Firebase constants*/
-    public static final String QUANTITY_BEER = "quantity_beer";
-    public static final String QUANTITY_WHISKEY = "quantity_whiskey";
     public static final String CONSTANTS_DELIVERY_CHARGE = "delivery_charges";
     /**/
 
@@ -63,6 +61,13 @@ public class Constants {
     public static final int NOTIFICATION_ID = 100;
     public static final int NOTIFICATION_ID_BIG_IMAGE = 101;
     /**/
+
+
+    /*Sending data towards different classes via intent constants*/
+    public static final String time = "time";
+    public static final String date = "date";
+
+
 
 
 

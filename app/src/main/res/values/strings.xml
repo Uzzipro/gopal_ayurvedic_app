@@ -99,4 +99,11 @@
     <string name="notif_channel_reminders_id">2</string>
     <string name="notif_channel_reminders">Reminders</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="appointment_details">Your Appointment Details</string>
+    <string name="full_name">Full Name</string>
+    <string name="contact_number">Contact number</string>
+    <string name="appointment_booked">Appointment Booked!</string>
+    <string name="get_directions"><u>Click here to get directions!</u></string>
+    <string name="goto_bookings"><u>Click here to go to your Appointments</u></string>
+
 </resources>

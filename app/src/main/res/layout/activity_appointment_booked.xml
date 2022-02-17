@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activitiestwo.AppointmentBookedActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:id="@+id/scrollView"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollViewConstraintLayout">
+
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llBookedTickandText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/_30_dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/tvTick"
+            android:layout_width="@dimen/_24_dp"
+            android:layout_height="@dimen/_24_dp"
+            app:srcCompat="@drawable/ic_greentick" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAppointmentBooked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/sfproroundedbold"
+            android:paddingHorizontal="@dimen/_10_dp"
+            android:text="@string/appointment_booked"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_22_sp" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/llAppointmentDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bluebgappointment"
+        android:layout_margin="@dimen/_25_dp"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/_10_dp"
+        app:layout_constraintTop_toBottomOf="@id/llBookedTickandText">
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/llAppintBooked">
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:layout_marginLeft="@dimen/_10_dp"
+            android:text="@string/appointment_details"
+            android:fontFamily="@font/dm_sans_bold"
+            android:textSize="@dimen/_15_sp"
+            android:layout_marginTop="@dimen/_10_dp"
+            android:textColor="@color/black"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30_dp"
+            android:layout_marginLeft="@dimen/_10_dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivCalendar"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:srcCompat="@drawable/ic_calendar" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDateAndTime"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="17 February, 2022 at 9:00AM."
+                android:paddingHorizontal="@dimen/_10_dp"
+                android:fontFamily="@font/sfproroundedmedium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15_sp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30_dp"
+            android:layout_marginLeft="@dimen/_10_dp"
+            android:id="@+id/llLocation"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivLocation"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                app:srcCompat="@drawable/ic_location" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gopal Ayurvedic Center, SCO 112-113, SECTOR 45-C, CHANDIGARH, Chandigarh, Chandigarh India, 160047"
+                android:paddingHorizontal="@dimen/_10_dp"
+                android:fontFamily="@font/sfproroundedmedium"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15_sp"/>
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_30_dp"
+            android:layout_marginLeft="@dimen/_10_dp"
+            android:id="@+id/llDirections"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivDirections"
+                android:layout_width="@dimen/_32_dp"
+                android:layout_height="@dimen/_32_dp"
+                app:srcCompat="@drawable/ic_location" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvDirections"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/get_directions"
+                android:paddingHorizontal="@dimen/_10_dp"
+                android:fontFamily="@font/sfproroundedmedium"
+                android:textColor="@color/dark_link_blue"
+                android:textSize="@dimen/_15_sp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:id="@+id/ivMap"
+            android:layout_marginBottom="@dimen/_30_dp"
+            android:layout_marginTop="@dimen/_10_dp"
+            android:src="@drawable/map"/>
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvGoToBookings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/sfproroundedmedium"
+        android:paddingHorizontal="@dimen/_10_dp"
+        android:text="@string/goto_bookings"
+        android:textColor="@color/dark_link_blue"
+        android:textSize="@dimen/_15_sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llAppointmentDetails" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
