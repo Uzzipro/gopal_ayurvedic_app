@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ImageView;
 
 import com.app.gopalayurvediccenter.R;
@@ -19,6 +20,7 @@ public class AppointmentActivity extends AppCompatActivity {
     private static final String TAG = "AppCompatActivity";
     private static AppCompatTextView tvMonth;
     private static ImageView ivBack;
+//    private DatePicker date_picker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class AppointmentActivity extends AppCompatActivity {
 //        String am_pm = null;
         tvMonth = findViewById(R.id.tvMonth);
         ivBack = findViewById(R.id.ivBack);
+//        date_picker = findViewById(R.id.date_picker);
         Date c = Calendar.getInstance().getTime();
 
         Long dAt = System.currentTimeMillis();
@@ -37,11 +40,12 @@ public class AppointmentActivity extends AppCompatActivity {
         int month = getDate(dAt).get(Calendar.MONTH);
         int date = getDate(dAt).get(Calendar.DATE);
         Log.e(TAG, "Current Date"+months[month]+ " " +date);
+        //setting minimum date for the date picker
+//        date_picker.setMinDate(System.currentTimeMillis() - 1000);
 
         tvMonth.setText(months[month]);
         ivBack.setOnClickListener(view -> {
             onBackPressed();
-
         });
     }
 

@@ -10,16 +10,23 @@
         <entry key="app/src/main/res/drawable-v24/ic_arrow_back_black_24dp.xml" value="0.295" />
         <entry key="app/src/main/res/drawable-v24/ic_orders.xml" value="0.295" />
         <entry key="app/src/main/res/drawable/ic_book.xml" value="0.295" />
+        <entry key="app/src/main/res/layout/activity_add_address.xml" value="0.2726449275362319" />
         <entry key="app/src/main/res/layout/activity_address_book.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/activity_appointment.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/addaddressdialogbox.xml" value="0.2726449275362319" />
+        <entry key="app/src/main/res/layout/addressbooklayout.xml" value="0.2726449275362319" />
+        <entry key="app/src/main/res/layout/addressbooklayout2.xml" value="0.2726449275362319" />
         <entry key="app/src/main/res/layout/app_bar_home_page.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/extra_layout_product_view.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/extra_layout_product_view_withoutpic.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.2682291666666667" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22760416666666666" />
+        <entry key="app/src/main/res/layout/nav_header_home_page.xml" value="0.10612968591691996" />
         <entry key="app/src/main/res/layout/product_showcase_layout.xml" value="0.29393115942028986" />
+        <entry key="app/src/main/res/layout/select_delivery_address_dialog.xml" value="0.2726449275362319" />
+        <entry key="app/src/main/res/menu/address_menu.xml" value="0.3890625" />
         <entry key="app/src/main/res/menu/home_page.xml" value="0.4036458333333333" />
       </map>
     </option>
@@ -29,5 +36,8 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="SuppressKotlinCodeStyleNotification">
+    <option name="disableForAll" value="true" />
   </component>
 </project>

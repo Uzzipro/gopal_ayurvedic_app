@@ -2,6 +2,7 @@ package com.app.gopalayurvediccenter.Activitiestwo;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -62,16 +63,30 @@ public class AddressBookActivity extends AppCompatActivity {
         int numberOfColumns = 1;
         rvAddress.setLayoutManager(new GridLayoutManager(this, numberOfColumns));
         rvAddress.setAdapter(adapter);
-        tvAddAddress.setOnClickListener(view -> addAddressDialog());
+        tvAddAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent addAddressIntent = new Intent(AddressBookActivity.this, AddAddressActivity.class);
+                startActivity(addAddressIntent);
+
+            }
+        });
         phNumber = getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "nophNumberfound");
 
         ivBack.setOnClickListener(view -> onBackPressed());
+//        getData();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
 
     private void getData() {
         final String phNumber = getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "No phone number detected");
         Query q1 = addressDbRef.child("address_book").child(phNumber);
+        addressDataList.clear();
 
         q1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

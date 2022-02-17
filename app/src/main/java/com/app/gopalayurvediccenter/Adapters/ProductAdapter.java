@@ -87,14 +87,17 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 
                     }
                     if (cardData.isCartHasItem()) {
-                        Toast.makeText(context, "Items cannot go below 0", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "Items cannot go below 0 1 ", Toast.LENGTH_LONG).show();
+                        
                         holder.quantityCount.setText(String.valueOf(quantityCountint));
                     } else {
-                        Toast.makeText(context, "Items cannot go below 0", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(context, "Items cannot go below 0 2 ", Toast.LENGTH_LONG).show();
+                        holder.quantityCount.setText("0");
 
                     }
                 } else {
-                    Toast.makeText(context, "Items cannot go below 0", Toast.LENGTH_LONG).show();
+//                    Toast.makeText(context, "Items cannot go below 0 3 ", Toast.LENGTH_LONG).show();
+                    holder.quantityCount.setText("0");
 
                 }
             }
@@ -211,7 +214,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
 //                                    holder.btAddToCart.setVisibility(View.VISIBLE);
                                     dbRef.child("cart_table").child(phNumber).child(c3.getNodeKey()).removeValue();
                                     quantityDb = 0;
-                                    Toast.makeText(context, "Items cannot go below 0", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "Items cannot go below 0 4", Toast.LENGTH_SHORT).show();
                                     progressDialog.dismiss();
                                 } else {
                                     quantityDb = quantityDb - 1;
