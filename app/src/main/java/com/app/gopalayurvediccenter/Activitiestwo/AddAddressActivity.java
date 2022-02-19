@@ -27,11 +27,7 @@ public class AddAddressActivity extends AppCompatActivity implements
     private Button btSaveAddress;
     private DatabaseReference addressDbRef;
     private String phNumber;
-
-
-
-
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

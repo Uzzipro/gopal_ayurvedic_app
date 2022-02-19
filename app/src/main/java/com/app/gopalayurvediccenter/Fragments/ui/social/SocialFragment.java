@@ -1,4 +1,4 @@
-package com.app.gopalayurvediccenter.Fragments.ui.favourites;
+package com.app.gopalayurvediccenter.Fragments.ui.social;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -24,7 +24,7 @@ import com.app.gopalayurvediccenter.Adapters.ProductAdapter;
 import com.app.gopalayurvediccenter.Dataclass.ProductDto;
 import com.app.gopalayurvediccenter.R;
 import com.app.gopalayurvediccenter.Utils.Constants;
-import com.app.gopalayurvediccenter.databinding.FragmentFavouriteBinding;
+import com.app.gopalayurvediccenter.databinding.FragmentSocialBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -37,7 +37,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FavouritesFragment extends Fragment {
+public class SocialFragment extends Fragment {
     private static final String TAG = "FavouritesFragment";
     private ProductAdapter adapter;
     private List<ProductDto> favProductList;
@@ -45,16 +45,16 @@ public class FavouritesFragment extends Fragment {
     private AlertDialog loadingDialog;
     private DatabaseReference dbRefGetFavs;
 
-    private FavouritesViewModel favouritesViewModel;
-    private FragmentFavouriteBinding binding;
+    private SocialViewModel socialViewModel;
+    private FragmentSocialBinding binding;
     String phNumber;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        favouritesViewModel =
-                new ViewModelProvider(this).get(FavouritesViewModel.class);
+        socialViewModel =
+                new ViewModelProvider(this).get(SocialViewModel.class);
 
-        binding = FragmentFavouriteBinding.inflate(inflater, container, false);
+        binding = FragmentSocialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         rvProduct = binding.rvProduct;
         dbRefGetFavs = FirebaseDatabase.getInstance().getReference();

@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_favourites"
-        android:name="com.app.gopalayurvediccenter.Fragments.ui.favourites.FavouritesFragment"
+        android:id="@+id/navigation_social"
+        android:name="com.app.gopalayurvediccenter.Fragments.ui.social.SocialFragment"
         android:label="@string/title_fav"
-        tools:layout="@layout/fragment_favourite" />
+        tools:layout="@layout/fragment_social" />
 
     <fragment
         android:id="@+id/navigation_profile"

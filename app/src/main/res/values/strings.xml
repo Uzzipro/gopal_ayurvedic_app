@@ -33,6 +33,7 @@
     <string name="title_activity_home">MainActivity</string>
     <string name="title_home">Home</string>
     <string name="title_fav">Favourites</string>
+    <string name="title_social">Social</string>
     <string name="title_profile">Profile</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="categories">Categories</string>
@@ -55,7 +56,11 @@
     <string name="total_amount">Total</string>
     <string name="select_delivery_address">Delivery address</string>
     <string name="payment_method">Payment method</string>
+    <string name="delivery_mode">Delivery mode</string>
     <string name="payment_method_text">Debit card, Credit card, UPI, Wallets</string>
+    <string name="cash_on_delivery">Cash on Delivery</string>
+    <string name="pick">Pick from the store</string>
+    <string name="deliver">Deliver to my doorstep</string>
     <string name="order_placed">Order Placed</string>
     <string name="order_placed_two">Your order has been successfully placed.</string>
     <string name="shop_more">Shop for more</string>

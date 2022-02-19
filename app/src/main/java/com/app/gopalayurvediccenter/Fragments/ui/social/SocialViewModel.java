@@ -1,14 +1,14 @@
-package com.app.gopalayurvediccenter.Fragments.ui.favourites;
+package com.app.gopalayurvediccenter.Fragments.ui.social;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class FavouritesViewModel extends ViewModel {
+public class SocialViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public FavouritesViewModel() {
+    public SocialViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is Favourites fragment");
     }

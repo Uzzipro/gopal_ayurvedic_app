@@ -8,12 +8,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,7 +77,8 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
     private AlertDialog loadingDialog, addressDialog, addAddressDialog;
     private ArrayList<CartDto> cdcList;
     private String deliverOrderID;
-    private AppCompatRadioButton rbPaymentMethod;
+    private AppCompatRadioButton rbPaymentMethod, rbPick, rbDelivery, rbCOD;
+    private String funCombo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,6 +89,9 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         ivBack = findViewById(R.id.ivBack);
         tvTotal = findViewById(R.id.tvTotal);
         rbPaymentMethod = findViewById(R.id.rbPaymentMethod);
+        rbPick = findViewById(R.id.rbPick);
+        rbDelivery = findViewById(R.id.rbDeliver);
+        rbCOD = findViewById(R.id.rbCOD);
         tvDeliveryAddress = findViewById(R.id.tvDeliveryAddress);
         llDeliveryAddress = findViewById(R.id.llDeliveryAddress);
         tvDeliveryCharge = findViewById(R.id.tvDeliveryCharge);
@@ -144,47 +150,80 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         });
 
         btMakePayment.setOnClickListener(view -> {
-            if (!rbPaymentMethod.isChecked()) {
-                showToast("Please select a payment method");
+            if (rbCOD.isChecked() && rbDelivery.isChecked()) {
+                showToast("Oops, Doorstep Delivery is not allowed with COD");
             } else {
-                if (tvDeliveryAddress.getText().toString().equalsIgnoreCase("Delivery address")) {
-                    showToast("Please select a delivery address");
-                } else {
 
-                    loadingScreen();
-                    String value_in_paisa = String.valueOf(grandTotal * 100);
+                if (!rbPaymentMethod.isChecked()) {
+                    showToast("Please select a payment method");
+                } else {
+                    if (tvDeliveryAddress.getText().toString().equalsIgnoreCase("Delivery address")) {
+                        showToast("Please select a delivery address");
+                    } else {
+
+                        loadingScreen();
+                        String value_in_paisa = String.valueOf(grandTotal * 100);
 //            initializePayment("ref_1", "100", phNumber, emailAddress);
 
-                    Query q3 = dbRef.child("keys").child("live_key");
-                    q3.addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                            if (snapshot.hasChildren()) {
-                                RpKeyDto rpKeyDto = snapshot.getValue(RpKeyDto.class);
-                                String rpKeyId = rpKeyDto.getKey_id();
-                                String rpKeySecret = rpKeyDto.getKey_secret();
-                                String description = "khetvet" + phNumber + System.currentTimeMillis();
-                                getClient(PaymentActivity.this, description, value_in_paisa, phNumber, emailAddress, rpKeyId, rpKeySecret);
+                        Query q3 = dbRef.child("keys").child("test");
+                        q3.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
+                                if (snapshot.hasChildren()) {
+                                    RpKeyDto rpKeyDto = snapshot.getValue(RpKeyDto.class);
+                                    String rpKeyId = rpKeyDto.getKey_id();
+                                    String rpKeySecret = rpKeyDto.getKey_secret();
+                                    String description = "gopalOrder" + phNumber + System.currentTimeMillis();
+                                    getClient(PaymentActivity.this, description, value_in_paisa, phNumber, emailAddress, rpKeyId, rpKeySecret);
+                                }
                             }
 
-                        }
+                            @Override
+                            public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
-                        @Override
-                        public void onCancelled(@NonNull @NotNull DatabaseError error) {
+                            }
+                        });
+                    }
 
-                        }
-                    });
                 }
-
             }
 
         });
 
+
 //        getDeliveryCharges();
 
+        rbPick.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                rbDelivery.setChecked(false);
+                llDeliveryAddress.setVisibility(View.GONE);
+                tvDeliveryAddress.setText("PickupfromStore");
+            }
+            Log.e(TAG, "onCheckedChanged: " + b);
+
+        });
+        rbDelivery.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                rbPick.setChecked(false);
+                llDeliveryAddress.setVisibility(View.VISIBLE);
+                tvDeliveryAddress.setText("Delivery Address");
+            }
+        });
+        rbPaymentMethod.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                rbCOD.setChecked(false);
+            }
+
+        });
+        rbCOD.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                rbPaymentMethod.setChecked(false);
+            }
+        });
+
     }
-    private void getDeliveryCharges(int grandTotalx)
-    {
+
+    private void getDeliveryCharges(int grandTotalx) {
         Query getDeliveryCharges = dbRef.child(Constants.CONSTANTS_FOR_ANDROID_APP_FIREBASE);
         getDeliveryCharges.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -199,12 +238,13 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 int deliveryChargesint = Integer.parseInt(deliveryCharges);
                 int deliveryChargesum = deliveryChargesint + grandTotalx;
                 String strDeliveryChargesSum = String.valueOf(deliveryChargesum);
-                String finalTextTotal = "Rs."+strDeliveryChargesSum;
-                String finalTextDeliveryCharge = "Rs."+deliveryCharges;
+                String finalTextTotal = "Rs." + strDeliveryChargesSum;
+                String finalTextDeliveryCharge = "Rs." + deliveryCharges;
                 tvTotal.setText(finalTextTotal);
                 tvDeliveryCharge.setText(finalTextDeliveryCharge);
                 grandTotal = grandTotalx + deliveryChargesint;
             }
+
             @Override
             public void onCancelled(@NonNull @NotNull DatabaseError error) {
 
@@ -240,7 +280,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
 
         tvCloseDialog = addressDialog.findViewById(R.id.tvCloseDialog);
-        llRv  = addressDialog.findViewById(R.id.llRv);
+        llRv = addressDialog.findViewById(R.id.llRv);
         tvAddAddress = addressDialog.findViewById(R.id.tvAddAddress);
         tvCloseDialog.setOnClickListener(view -> addressDialog.dismiss());
         rvShowAddress = addressDialog.findViewById(R.id.rvShowAddress);
@@ -260,8 +300,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                         addressDataList.add(addressDto);
                         adapter.notifyDataSetChanged();
                     }
-                }
-                else {
+                } else {
                     llRv.setVisibility(View.GONE);
                     tvAddAddress.setVisibility(View.VISIBLE);
                     tvAddAddress.setOnClickListener(view -> {
@@ -399,7 +438,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             /**/
 
             /*Parameteres not to change*/
-            options.put(Constants.RP_NAME, "KhetVet");
+            options.put(Constants.RP_NAME, "Gopal Ayurvedic Center");
             options.put(Constants.RP_IMAGE, "https://s3.amazonaws.com/rzp-mobile/images/rzp.png");
             options.put(Constants.RP_THEMECOLOR, "#3399cc");
             options.put(Constants.RP_CURRENCY, "INR");

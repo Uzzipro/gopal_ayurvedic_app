@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/bggrey"
-    tools:context=".Fragments.ui.favourites.FavouritesFragment">
+    tools:context=".Fragments.ui.social.SocialFragment">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/toolbarHome"
@@ -25,7 +25,7 @@
             android:fontFamily="@font/sfproroundedbold"
             android:paddingLeft="20dp"
             android:gravity="center_vertical"
-            android:text="@string/title_fav"
+            android:text="@string/title_social"
             android:textColor="@color/black"
             android:textSize="@dimen/_24_sp"
             app:layout_constraintStart_toStartOf="parent"

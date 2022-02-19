@@ -22,19 +22,11 @@ public class shopRegisterclass {
     public void setPhnumber(String phnumber) {
         this.phnumber = phnumber;
     }
-
-
-
-
+    
     public shopRegisterclass(String fullName, String phnumber)
     {
         this.fullname = fullName;
         this.phnumber = phnumber;
-
-
-
-
-
 
     }
 
