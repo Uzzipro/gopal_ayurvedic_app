@@ -107,21 +107,6 @@ public class AddressBookActivity extends AppCompatActivity {
         });
     }
 
-//
-//    @Override
-//    public boolean onMenuItemClick(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.edit_address:
-////                archive(item);
-//                return true;
-//            case R.id.delete_address:
-////                delete(item);
-//                return true;
-//            default:
-//                return false;
-//        }
-//    }
-
     private void addAddressDialog() {
         LayoutInflater factory = LayoutInflater.from(this);
         final View dialogLoading = factory.inflate(R.layout.addaddressdialogbox, null);
@@ -169,7 +154,7 @@ public class AddressBookActivity extends AppCompatActivity {
                     strHowToReach = "empty";
                 }
                 String strTag = etTag.getText().toString().trim();
-                AddressDto addressDto = new AddressDto(addressID, strHouseNumber, strFloor, strTowerBlock, strHowToReach, strTag);
+                AddressDto addressDto = new AddressDto(addressID, strHouseNumber, strFloor, strTowerBlock, strHowToReach, strTag, "  ", "  ");
                 addressDbRef.child("address_book").child(phNumber).child(addressID).setValue(addressDto);
                 showToast("Address saved");
                 adapter.notifyDataSetChanged();

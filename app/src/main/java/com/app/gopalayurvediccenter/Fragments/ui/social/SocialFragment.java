@@ -21,7 +21,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.app.gopalayurvediccenter.Adapters.ProductAdapter;
+import com.app.gopalayurvediccenter.Adapters.SocialMediaAdapter;
 import com.app.gopalayurvediccenter.Dataclass.ProductDto;
+import com.app.gopalayurvediccenter.Dataclass.SocialMediaDto;
 import com.app.gopalayurvediccenter.R;
 import com.app.gopalayurvediccenter.Utils.Constants;
 import com.app.gopalayurvediccenter.databinding.FragmentSocialBinding;
@@ -39,85 +41,44 @@ import java.util.List;
 
 public class SocialFragment extends Fragment {
     private static final String TAG = "FavouritesFragment";
-    private ProductAdapter adapter;
-    private List<ProductDto> favProductList;
-    private RecyclerView rvProduct;
-    private AlertDialog loadingDialog;
-    private DatabaseReference dbRefGetFavs;
-
-    private SocialViewModel socialViewModel;
+    private List<SocialMediaDto> socialMediaList;
+    private RecyclerView rvSocial;
     private FragmentSocialBinding binding;
-    String phNumber;
+    private SocialMediaAdapter adapter;
+    private String phNumber;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        socialViewModel =
-                new ViewModelProvider(this).get(SocialViewModel.class);
 
         binding = FragmentSocialBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
-        rvProduct = binding.rvProduct;
-        dbRefGetFavs = FirebaseDatabase.getInstance().getReference();
-        favProductList = new ArrayList<>();
-        favProductList = new ArrayList<>();
-        adapter = new ProductAdapter(getActivity(), favProductList);
-        int numberOfColumns = 1;
-        rvProduct.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
-        rvProduct.setAdapter(adapter);
+        rvSocial = binding.rvSocial;
         phNumber = getActivity().getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "No phone number detected");
-//        getProducts2();
+
+        socialMediaList = new ArrayList<>();
+        adapter = new SocialMediaAdapter(getActivity(), socialMediaList);
+        int numberOfColumns = 2;
+        rvSocial.setLayoutManager(new GridLayoutManager(getActivity(), numberOfColumns));
+        rvSocial.setAdapter(adapter);
+
+        getSocialMedia();
         return root;
     }
 
-    private void getProducts2() {
-        loadingScreen();
-        favProductList.clear();
-        adapter.notifyDataSetChanged();
-        Query q1 = dbRefGetFavs.child("favourites").child(phNumber);
-        q1.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
-                if (snapshot.hasChildren()) {
-                    for (DataSnapshot dataSnapshot1 : snapshot.getChildren()) {
-                        ProductDto productDto = dataSnapshot1.getValue(ProductDto.class);
-                        favProductList.add(productDto);
-                        adapter.notifyDataSetChanged();
-                    }
-                    loadingDialog.dismiss();
-                } else {
-
-                    loadingDialog.dismiss();
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull @NotNull DatabaseError error) {
-
-            }
-        });
-
-
+    private void getSocialMedia() {
+        String[] socialMediaNames = {"Facebook", "Youtube", "Blog", "LinkedIn", "Twitter", "Website"};
+        int[] logos = {R.drawable.ic_facebook, R.drawable.ic_yt, R.drawable.ic_blogspot, R.drawable.ic_linkedin, R.drawable.ic_twitter, R.drawable.ic_website};
+//        String[] mediaLinks = {"https://www.facebook.com/gopalayurveda45". };
+        socialMediaList.clear();
+        for(int z = 0; z < socialMediaNames.length; z++)
+        {
+            SocialMediaDto socialMediaDto = new SocialMediaDto();
+            socialMediaDto.setSocialMediaName(socialMediaNames[z]);
+            socialMediaDto.setSocialMediaLogo(logos[z]);
+            socialMediaList.add(socialMediaDto);
+            adapter.notifyDataSetChanged();
+        }
     }
-
-    private void loadingScreen() {
-        LayoutInflater factory = LayoutInflater.from(getActivity());
-        final View dialogLoading = factory.inflate(R.layout.loading, null);
-        loadingDialog = new AlertDialog.Builder(getActivity()).create();
-        Window window = loadingDialog.getWindow();
-        WindowManager.LayoutParams wlp = window.getAttributes();
-        wlp.gravity = Gravity.CENTER;
-//        wlp.flags &= ~WindowManager.LayoutParams.FLAG_DIM_BEHIND;
-        window.setAttributes(wlp);
-        loadingDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        loadingDialog.setCancelable(false);
-        loadingDialog.setView(dialogLoading);
-        loadingDialog.show();
-        TextView tvLoading = dialogLoading.findViewById(R.id.tvLoading);
-        LottieAnimationView animation_view = dialogLoading.findViewById(R.id.animation_view);
-        tvLoading.setText("Loading the good stuff....");
-    }
-
 
     @Override
     public void onDestroyView() {
@@ -128,6 +89,6 @@ public class SocialFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-        getProducts2();
+        getSocialMedia();
     }
 }

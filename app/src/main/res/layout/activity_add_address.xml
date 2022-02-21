@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/dialog_white_bg2"
     android:paddingVertical="@dimen/_20_dp">
 
@@ -178,11 +179,20 @@
                         android:textSize="@dimen/textsize_17sp" />
                 </com.google.android.material.textfield.TextInputLayout>
 
-
-                <com.google.android.gms.maps.MapView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
-                    android:id="@+id/mvMapsAddress"/>
+                    android:layout_height="wrap_content"
+                    android:text="Please long press the location on the map"
+                    android:id="@+id/tvSelectMaps"
+                    android:fontFamily="@font/sfproroundedmedium"
+                    android:layout_marginTop="@dimen/_20_dp"
+                    android:textColor="@color/black"/>
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_200_dp"
+                    tools:context=".Activitiestwo.MapsActivity" />
                 <View
                     android:id="@+id/dividingView5"
                     android:layout_width="match_parent"

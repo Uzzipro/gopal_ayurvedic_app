@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/clMain"
+    android:layout_margin="@dimen/_10_dp"
+    android:background="@drawable/dialog_white_bg"
+    android:paddingHorizontal="@dimen/_30_dp"
+    android:layout_gravity="center"
+    android:paddingVertical="@dimen/_20_dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/ivImage"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_yt" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvSocialMediaName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10_dp"
+        android:fontFamily="@font/sfproroundedmedium"
+        android:text="Youtube"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivImage" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

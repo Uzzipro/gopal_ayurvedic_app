@@ -369,7 +369,7 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                     strHowToReach = "empty";
                 }
                 String strTag = etTag.getText().toString().trim();
-                AddressDto addressDto = new AddressDto(addressID, strHouseNumber, strFloor, strTowerBlock, strHowToReach, strTag);
+                AddressDto addressDto = new AddressDto(addressID, strHouseNumber, strFloor, strTowerBlock, strHowToReach, strTag, " ", " ");
                 addressDbRef.child("address_book").child(phNumber).child(addressID).setValue(addressDto);
                 showToast("Address saved");
                 addressDialog.dismiss();
