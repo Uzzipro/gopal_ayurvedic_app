@@ -28,11 +28,15 @@ import android.widget.Toast;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.ActivityResultRegistry;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.DefaultLifecycleObserver;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -75,10 +79,15 @@ public class ProfileFragment extends Fragment {
     private AlertDialog loadingDialog, profileChangeDetailsDialog, logoutDialog;
     private TextView tvName, tvEmailAddress, tvPhNumber, tvBio, tvChangeDetails;
     private ActivityResultLauncher activityResultLauncher;
-    private MyLifecycleObserver mObserver;;
+//    private MyLifecycleObserver mObserver;;
+//    private final ActivityResultRegistry mRegistry;
+//    private final MutableLiveData<Bitmap> mThumbnailLiveData = new MutableLiveData();
+//    private ActivityResultLauncher<Void> mTakePicture;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         profileViewModel =
                 new ViewModelProvider(this).get(ProfileViewModel.class);
 
@@ -108,12 +117,7 @@ public class ProfileFragment extends Fragment {
         });
 
         tvChangeDetails.setOnClickListener(view -> getPersonalDetailsDialog());
-        llOrders.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goToOrdersActivity();
-            }
-        });
+        llOrders.setOnClickListener(view -> goToOrdersActivity());
         llLogout.setOnClickListener(view -> {
 //            logout();
             logoutDialog();
@@ -134,27 +138,51 @@ public class ProfileFragment extends Fragment {
             startActivity(i);
         });
 
+        llEdit.setOnClickListener(view -> showToast("Edit button for profile picture clicked"));
 
-        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-            Log.e(TAG, "onActivityResult: works");
-            if (result.getResultCode() == PICK_IMAGE_REQUEST && result.getResultCode() == RESULT_OK
-                    && result.getData() != null && result.getData().getData() != null) {
-                filePath = result.getData().getData();
-                try {
-                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
-                    ivDisplayPicture.setImageBitmap(bitmap);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        llEdit.setOnClickListener(view -> mObserver.selectImage());
-        mObserver = new MyLifecycleObserver(getActivity().getActivityResultRegistry());
-        getLifecycle().addObserver(mObserver);
+//        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+//            Log.e(TAG, "onActivityResult: works");
+//            if (result.getResultCode() == PICK_IMAGE_REQUEST && result.getResultCode() == RESULT_OK
+//                    && result.getData() != null && result.getData().getData() != null) {
+//                filePath = result.getData().getData();
+//                try {
+//                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+//                    ivDisplayPicture.setImageBitmap(bitmap);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//
+//        mObserver = new MyLifecycleObserver(getActivity().getActivityResultRegistry());
+//        getLifecycle().addObserver(mObserver);
+//
+//
+//        mTakePicture = registerForActivityResult(new ActivityResultContracts.TakePicturePreview(), mRegistry, thumbnail -> {
+//            mThumbnailLiveData.setValue(thumbnail);
+//            Log.e(TAG, "onActivityResult: this works too");
+//        });
 
         return root;
     }
+
+//    public ProfileFragment(@NonNull ActivityResultRegistry registry) {
+//        super();
+//        mRegistry = registry;
+//    }
+//
+//    @VisibleForTesting
+//    @NonNull
+//    ActivityResultLauncher<Void> getTakePicture() {
+//        return mTakePicture;
+//    }
+//
+//    @VisibleForTesting
+//    @NonNull
+//    LiveData<Bitmap> getThumbnailLiveData() {
+//        return mThumbnailLiveData;
+//    }
+
     public void setselectProductimage() {
         Intent intent = new Intent();
         intent.setType("image/*");
