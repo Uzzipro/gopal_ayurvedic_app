@@ -72,6 +72,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.MyViewHo
         holder.btPlus.setOnClickListener(v -> setPlusQuantity(holder, position, false));
 
         final String phNumber = context.getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "No phone number detected");
+        if(phNumber.equals("1234567890"))
+        {
+         holder.btMinus.setVisibility(View.GONE);
+         holder.btPlus.setVisibility(View.GONE);
+         holder.quantityCount.setVisibility(View.GONE);
+        }
         DatabaseReference db = FirebaseDatabase.getInstance().getReference();
         db.child("cart_table").child(phNumber).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override

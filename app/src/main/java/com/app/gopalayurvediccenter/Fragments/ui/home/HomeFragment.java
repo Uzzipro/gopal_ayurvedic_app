@@ -3,6 +3,7 @@ package com.app.gopalayurvediccenter.Fragments.ui.home;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,6 +31,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.app.gopalayurvediccenter.Activitiestwo.CartActivity;
+import com.app.gopalayurvediccenter.Activitiestwo.LoginOrSignupActivity;
+import com.app.gopalayurvediccenter.Activitiestwo.MainActivity;
 import com.app.gopalayurvediccenter.Adapters.ProductAdapter;
 import com.app.gopalayurvediccenter.Dataclass.CategoryDto;
 import com.app.gopalayurvediccenter.Dataclass.ProductDto;
@@ -57,13 +61,13 @@ public class HomeFragment extends Fragment {
     private TextView tvDrinks, tvSnacks, tvCartItemCount;
     private int cartItemCount;
     private View vDrinks, vSnacks;
-    private LinearLayoutCompat llProductNotFound, llRv;
+    private LinearLayoutCompat llProductNotFound, llRv, llCartItems;
     private Spinner spinnerDrinkType;
     private LottieAnimationView animationView;
     /*Adapter components, lists and adapters*/
     private DatabaseReference dbRefProductType, dbRefGetProducts, dbSetFCMToken, dbRefGetCartCount;
     private RelativeLayout rlDrinkType;
-    private TextView tvLoading;
+    private TextView tvLoading, tvHomeFragment;
     private ProductAdapter adapter;
     private List<ProductDto> listProduct;
     private RecyclerView rvProduct;
@@ -82,7 +86,7 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         phNumber = getActivity().getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "No phone number detected");
-        Log.e(TAG, "phNumber111"+phNumber);
+        Log.e(TAG, "phNumber "+phNumber);
 
 //        final TextView textView = binding.textHome;
         /*Linear layouts*/
@@ -90,6 +94,7 @@ public class HomeFragment extends Fragment {
         llSnacks = binding.llSnacks;
         llProductNotFound = binding.llProductNotFound;
         llRv = binding.llRv;
+        llCartItems = binding.llCartItems;
         /**/
 
         /*Relative layouts*/
@@ -100,6 +105,7 @@ public class HomeFragment extends Fragment {
         tvDrinks = binding.tvDrinks;
         tvSnacks = binding.tvSnacks;
         tvCartItemCount = binding.tvCartItemCount;
+        tvHomeFragment = binding.tvHomeFragment;
         /**/
 
         tvLoading = binding.tvLoading;
@@ -130,6 +136,23 @@ public class HomeFragment extends Fragment {
 
         /*ImageViews*/
         ivCart = binding.ivCart;
+        if(phNumber.equals("1234567890"))
+        {
+            ivCart.setVisibility(View.GONE);
+            llCartItems.setVisibility(View.GONE);
+            tvHomeFragment.setTextColor(Color.parseColor("#ffffff"));
+            tvHomeFragment.setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.loginbtbg));
+            tvHomeFragment.setText("Click here to Login");
+            tvHomeFragment.setOnClickListener(view -> {
+                SharedPreferences preferences = getActivity().getSharedPreferences(Constants.ACCESS_PREFS,Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.apply();
+                Intent i = new Intent(getActivity(), LoginOrSignupActivity.class);
+                getActivity().finish();
+                startActivity(i);
+            });
+        }
         /**/
 
         /*Setting adapters and populating it*/

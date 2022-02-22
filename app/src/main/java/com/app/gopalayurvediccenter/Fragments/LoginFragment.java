@@ -56,7 +56,7 @@ public class LoginFragment extends Fragment {
 
     /*Components*/
     private EditText etPhNumber, etPassword;
-    private Button btLogin;
+    private Button btLogin, btSkipToMainContent;
     /**/
 
     private DatabaseReference dbRefLogin;
@@ -112,9 +112,23 @@ public class LoginFragment extends Fragment {
         etPhNumber = v.findViewById(R.id.etPhNumber);
         etPassword = v.findViewById(R.id.etPassword);
         btLogin = v.findViewById(R.id.btLogin);
+        btSkipToMainContent = v.findViewById(R.id.btSkipToMainContent);
         btLogin.setOnClickListener(view -> checkCredentials());
-
+        btSkipToMainContent.setOnClickListener(view -> skipToMainContent());
         return v;
+    }
+
+    private void skipToMainContent()
+    {
+        SharedPreferences.Editor editor = getActivity().getSharedPreferences(Constants.
+                ACCESS_PREFS, MODE_PRIVATE).edit();
+        editor.putString(Constants.PH_NUMBER, "1234567890");
+        editor.putBoolean(Constants.LOGIN_INFO, false);
+        editor.commit();
+        Intent loggedinActivity = new Intent(getActivity(), MainActivity.class);
+        loggedinActivity.putExtra(Constants.WELCOME_BACK, "Sign up to use more features");
+        loggedinActivity.putExtra(Constants.PH_NUMBER, "1234567890");
+        startActivity(loggedinActivity);
     }
 
     private void loadingScreen()

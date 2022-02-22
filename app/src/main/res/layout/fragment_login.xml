@@ -20,8 +20,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:paddingTop="50dp">
+                android:paddingTop="50dp"
+                android:paddingRight="40dp">
 
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/llEmail"
@@ -80,21 +80,23 @@
                         android:maxLines="1"
                         android:textColor="@color/black" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
+
                 <androidx.appcompat.widget.LinearLayoutCompat
                     android:id="@+id/llForgotPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:orientation="vertical">
+
                     <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvForgotPassword"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/forgot_password"
-                        android:fontFamily="@font/sfproroundedsemibold"
-                        android:id="@+id/tvForgotPassword"
-                        android:textSize="15sp"
                         android:layout_marginTop="10dp"
-                        android:textColor="@color/orange"/>
+                        android:fontFamily="@font/sfproroundedsemibold"
+                        android:text="@string/forgot_password"
+                        android:textColor="@color/orange"
+                        android:textSize="15sp" />
                 </androidx.appcompat.widget.LinearLayoutCompat>
 
             </androidx.appcompat.widget.LinearLayoutCompat>
@@ -104,20 +106,34 @@
                 android:id="@+id/llbtLogin"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="30dp"
+                android:gravity="bottom"
                 android:orientation="vertical">
+
                 <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btLogin"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/login"
-                    android:textSize="15sp"
-                    android:textAllCaps="false"
-                    android:fontFamily="@font/sfproroundedsemibold"
-                    android:textColor="@color/white"
                     android:background="@drawable/btbg"
-                    android:id="@+id/btLogin"/>
+                    android:fontFamily="@font/sfproroundedsemibold"
+                    android:text="@string/login"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btSkipToMainContent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_20_dp"
+                    android:layout_marginTop="@dimen/_10_dp"
+                    android:background="@drawable/btbg"
+                    android:fontFamily="@font/sfproroundedsemibold"
+                    android:text="@string/skip_to_main_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
             </androidx.appcompat.widget.LinearLayoutCompat>
 
         </androidx.appcompat.widget.LinearLayoutCompat>

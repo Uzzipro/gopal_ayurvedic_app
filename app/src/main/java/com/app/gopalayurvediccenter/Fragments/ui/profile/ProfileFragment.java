@@ -196,11 +196,11 @@ public class ProfileFragment extends Fragment {
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.apply();
-        showToast("Logged out successfully");
         Intent i = new Intent(getActivity(), LoginOrSignupActivity.class);
         startActivity(i);
         logoutDialog.dismiss();
         getActivity().finish();
+        showToast("Logged out successfully");
     }
 
     private void goToOrdersActivity()

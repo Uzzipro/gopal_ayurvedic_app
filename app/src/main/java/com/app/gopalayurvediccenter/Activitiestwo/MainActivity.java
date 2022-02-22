@@ -38,46 +38,52 @@ public class MainActivity extends AppCompatActivity {
         if (getIntent().hasExtra(Constants.WELCOME_BACK) && getIntent() != null) {
             Intent intent = getIntent();
             String welcome_back_msg = intent.getStringExtra(Constants.WELCOME_BACK);
+            phNumber = intent.getStringExtra(Constants.PH_NUMBER);
+            Log.e(TAG, "onCreate: " + phNumber);
             showToast(welcome_back_msg);
         }
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_home, R.id.navigation_social, R.id.navigation_profile)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
+        if (phNumber != null && phNumber.equals("1234567890")) {
+            showToast("Please login to start using the application fully");
+        } else {
+            AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                    R.id.navigation_home, R.id.navigation_social, R.id.navigation_profile)
+                    .build();
+            NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main);
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(binding.navView, navController);
+            NavigationUI.setupWithNavController(binding.navView, navController);
 
-        /* Color for the icons of bottom navigation*/
-        ColorStateList iconColorStates = new ColorStateList(
-                new int[][]{
-                        new int[]{-android.R.attr.state_checked},
-                        new int[]{android.R.attr.state_checked}
-                },
-                new int[]{
-                        Color.parseColor("#B1B1B3"),
-                        Color.parseColor("#009120")
-                });
 
-        navView.setItemIconTintList(iconColorStates);
-        navView.setItemTextColor(iconColorStates);
 
-        phNumber = getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "nophNumberfound");
+            /* Color for the icons of bottom navigation*/
+            ColorStateList iconColorStates = new ColorStateList(
+                    new int[][]{
+                            new int[]{-android.R.attr.state_checked},
+                            new int[]{android.R.attr.state_checked}
+                    },
+                    new int[]{
+                            Color.parseColor("#B1B1B3"),
+                            Color.parseColor("#009120")
+                    });
 
-        FirebaseMessaging.getInstance().getToken().addOnSuccessListener(InstanceIdResult -> {
-            if(InstanceIdResult != null)
-            {
-                String token = InstanceIdResult;
-                saveFcmTokenToDataBase(token);
-                Log.e(TAG, "onSuccess: "+token);
-            }
-            // send it to server
-        });
+            navView.setItemIconTintList(iconColorStates);
+            navView.setItemTextColor(iconColorStates);
+
+            phNumber = getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "nophNumberfound");
+
+            FirebaseMessaging.getInstance().getToken().addOnSuccessListener(InstanceIdResult -> {
+                if (InstanceIdResult != null) {
+                    String token = InstanceIdResult;
+                    saveFcmTokenToDataBase(token);
+                    Log.e(TAG, "onSuccess: " + token);
+                }
+            });
+        }
     }
-    private void saveFcmTokenToDataBase(String token)
-    {
+
+    private void saveFcmTokenToDataBase(String token) {
         DatabaseReference databaseReference;
         databaseReference = FirebaseDatabase.getInstance().getReference();
 

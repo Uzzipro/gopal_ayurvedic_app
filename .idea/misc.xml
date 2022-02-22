@@ -20,10 +20,12 @@
         <entry key="app/src/main/res/drawable/ic_book.xml" value="0.295" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.327" />
         <entry key="app/src/main/res/drawable/ic_mapmarker.xml" value="0.327" />
+        <entry key="app/src/main/res/drawable/loginbtbg.xml" value="0.218" />
         <entry key="app/src/main/res/layout/activity_add_address.xml" value="0.2726449275362319" />
         <entry key="app/src/main/res/layout/activity_address_book.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/activity_appointment.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/activity_appointment_booked.xml" value="0.3078370314378005" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.348731884057971" />
         <entry key="app/src/main/res/layout/activity_maps.xml" value="0.20364583333333333" />
         <entry key="app/src/main/res/layout/activity_payment.xml" value="0.348731884057971" />
         <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.29393115942028986" />
@@ -34,6 +36,7 @@
         <entry key="app/src/main/res/layout/extra_layout_product_view.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/extra_layout_product_view_withoutpic.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.2682291666666667" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.348731884057971" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.29393115942028986" />
         <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3451807657877604" />
         <entry key="app/src/main/res/layout/fragment_social.xml" value="0.348731884057971" />

@@ -48,6 +48,7 @@
                 android:layout_width="@dimen/_20_dp"
                 android:layout_height="@dimen/_20_dp"
                 android:layout_alignParentRight="true"
+                android:id="@+id/llCartItems"
                 android:background="@drawable/ic_redcircle">
 
                 <androidx.appcompat.widget.AppCompatTextView
