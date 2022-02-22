@@ -268,8 +268,6 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
         addressDialog.show();
         addressDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
-
-
         List<AddressDto> addressDataList;
         LinearLayoutCompat llRv;
         RecyclerView rvShowAddress;
@@ -294,20 +292,23 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
             public void onDataChange(@NonNull @NotNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()) {
                     llRv.setVisibility(View.VISIBLE);
-                    tvAddAddress.setVisibility(View.GONE);
+//                    tvAddAddress.setVisibility(View.GONE);
                     for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         AddressDto addressDto = dataSnapshot.getValue(AddressDto.class);
                         addressDataList.add(addressDto);
                         adapter.notifyDataSetChanged();
                     }
-                } else {
-                    llRv.setVisibility(View.GONE);
+
                     tvAddAddress.setVisibility(View.VISIBLE);
                     tvAddAddress.setOnClickListener(view -> {
-                        addAddressDialog();
+//                        addAddressDialog();
+                        Intent i = new Intent(PaymentActivity.this, AddAddressActivity.class);
+                        startActivity(i);
                         addressDialog.dismiss();
-
                     });
+                } else {
+                    llRv.setVisibility(View.GONE);
+
                 }
             }
 
@@ -316,7 +317,6 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
 
             }
         });
-
     }
 
     private void addAddressDialog() {
@@ -376,6 +376,11 @@ public class PaymentActivity extends AppCompatActivity implements PaymentResultL
                 addAddressDialog.dismiss();
             }
         });
+    }
+
+    private void addAddressDialogSecond() {
+        Intent i = new Intent(PaymentActivity.this, AddAddressActivity.class);
+        startActivity(i);
     }
 
     private Retrofit getClient(final Context context, String description, String amount, String phNumber, String email, String rp_key_id, String rp_key_secret) {

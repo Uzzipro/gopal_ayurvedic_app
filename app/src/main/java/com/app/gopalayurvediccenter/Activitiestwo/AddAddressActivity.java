@@ -84,8 +84,10 @@ public class AddAddressActivity extends AppCompatActivity implements
                 } else {
                     strHowToReach = "empty";
                 }
+                addLong = String.valueOf(currentLatLong.longitude);
+                addLat = String.valueOf(currentLatLong.latitude);
                 String strTag = etTag.getText().toString().trim();
-                AddressDto addressDto = new AddressDto(addressID, strHouseNumber, strFloor, strTowerBlock, strHowToReach, strTag, " ", " ");
+                AddressDto addressDto = new AddressDto(addressID, strHouseNumber, strFloor, strTowerBlock, strHowToReach, strTag, addLong, addLat);
                 addressDbRef.child("address_book").child(phNumber).child(addressID).setValue(addressDto);
                 showToast("Address saved");
                 onBackPressed();
@@ -107,7 +109,6 @@ public class AddAddressActivity extends AppCompatActivity implements
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
 
         fusedLocationClient.getLastLocation().addOnSuccessListener(this, location -> {
              currentLatLong = new LatLng(location.getLatitude(), location.getLongitude());

@@ -1,13 +1,19 @@
 package com.app.gopalayurvediccenter.Fragments.ui.profile;
 
+import static android.app.Activity.RESULT_OK;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,9 +25,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.DefaultLifecycleObserver;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
@@ -34,6 +45,7 @@ import com.app.gopalayurvediccenter.Activitiestwo.OrdersActivity;
 import com.app.gopalayurvediccenter.Dataclass.UserDto;
 import com.app.gopalayurvediccenter.R;
 import com.app.gopalayurvediccenter.Utils.Constants;
+import com.app.gopalayurvediccenter.Utils.MyLifecycleObserver;
 import com.app.gopalayurvediccenter.databinding.FragmentProfileBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -41,21 +53,29 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 
 import org.jetbrains.annotations.NotNull;
+
+import java.io.IOException;
 
 
 public class ProfileFragment extends Fragment {
     private static final String TAG = "ProfileFragment";
     private DatabaseReference dbRefPersonalDetails;
+    private static int PICK_IMAGE_REQUEST = 71;
     private ProfileViewModel profileViewModel;
     private FragmentProfileBinding binding;
     private ImageView ivDisplayPicture;
+    private Uri filePath;
+    private FirebaseStorage storage;
     private UserDto userDtoDialogDto;
-    private LinearLayoutCompat llAddresses, llOrders, llLogout, llFaq, llHelp, llBookAnAppointment;
+    private LinearLayoutCompat llAddresses, llOrders, llLogout, llFaq, llHelp, llBookAnAppointment, llEdit;
     private String phNumber, fullName, phNumberConcat, userKey;
     private AlertDialog loadingDialog, profileChangeDetailsDialog, logoutDialog;
     private TextView tvName, tvEmailAddress, tvPhNumber, tvBio, tvChangeDetails;
+    private ActivityResultLauncher activityResultLauncher;
+    private MyLifecycleObserver mObserver;;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -77,6 +97,7 @@ public class ProfileFragment extends Fragment {
         llFaq = binding.llFaq;
         llHelp = binding.llHelp;
         llBookAnAppointment = binding.llBookAnAppointment;
+        llEdit = binding.llEdit;
 
         phNumber = getActivity().getSharedPreferences(Constants.ACCESS_PREFS, Context.MODE_PRIVATE).getString(Constants.PH_NUMBER, "nophNumberfound");
         dbRefPersonalDetails = FirebaseDatabase.getInstance().getReference("users");
@@ -113,7 +134,32 @@ public class ProfileFragment extends Fragment {
             startActivity(i);
         });
 
+
+        activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+            Log.e(TAG, "onActivityResult: works");
+            if (result.getResultCode() == PICK_IMAGE_REQUEST && result.getResultCode() == RESULT_OK
+                    && result.getData() != null && result.getData().getData() != null) {
+                filePath = result.getData().getData();
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                    ivDisplayPicture.setImageBitmap(bitmap);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        llEdit.setOnClickListener(view -> mObserver.selectImage());
+        mObserver = new MyLifecycleObserver(getActivity().getActivityResultRegistry());
+        getLifecycle().addObserver(mObserver);
+
         return root;
+    }
+    public void setselectProductimage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
 
     private void logout()

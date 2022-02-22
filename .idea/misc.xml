@@ -15,6 +15,7 @@
         <entry key="app/src/main/res/drawable-v24/ic_heart.xml" value="0.327" />
         <entry key="app/src/main/res/drawable-v24/ic_location.xml" value="0.327" />
         <entry key="app/src/main/res/drawable-v24/ic_orders.xml" value="0.295" />
+        <entry key="app/src/main/res/drawable-v24/ppeditbutton.xml" value="0.218" />
         <entry key="app/src/main/res/drawable/bluebgappointment.xml" value="0.211" />
         <entry key="app/src/main/res/drawable/ic_book.xml" value="0.295" />
         <entry key="app/src/main/res/drawable/ic_location.xml" value="0.327" />
@@ -34,7 +35,7 @@
         <entry key="app/src/main/res/layout/extra_layout_product_view_withoutpic.xml" value="0.35280797101449274" />
         <entry key="app/src/main/res/layout/fragment_gallery.xml" value="0.2682291666666667" />
         <entry key="app/src/main/res/layout/fragment_login.xml" value="0.29393115942028986" />
-        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.22760416666666666" />
+        <entry key="app/src/main/res/layout/fragment_profile.xml" value="0.3451807657877604" />
         <entry key="app/src/main/res/layout/fragment_social.xml" value="0.348731884057971" />
         <entry key="app/src/main/res/layout/nav_header_home_page.xml" value="0.10612968591691996" />
         <entry key="app/src/main/res/layout/product_showcase_layout.xml" value="0.29393115942028986" />
